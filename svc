@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# =================================================================
+# 'svc' is a wrapper for the most-called functions of systemctl.
+# since systemd assumes that daemons start/stop/restart/etc. ok
+# if no error passed it doesn't show a status output like the old
+# init scripts. 'svc' is an attempt to re-create that functionality
+# and give a status update when a service is started or stopped by
+# calling 'systemctl status' after the start/stop command. its not
+# perfect but it works.
+#
+# written by: Peter Christian Fraedrich
+# email: iops@hexapp.net
+# =================================================================
+
+
+if [ $USER != 'root' ]; then
+        echo 'You must be root!'
+        exit 1
+fi
+
+if [ $1 != 'start' ] && [ $1 != 'stop' ] && [ $1 != 'status' ] && [ $1 != restart ]; then
+        echo Unrecognized directive $1
+        exit 1
+fi
+
+if [ -z $2 ]; then
+        echo Missing serivce or daemon name
+        exit 1
+fi
+
+if [ -n $1 ] && [ -n $2 ] && [ $1 == 'status' ]; then
+        systemctl $1 $2
+        exit 0
+fi
+
+if [ -n $1 ] && [ -n $2  ]; then
+        systemctl $1 $2
+        systemctl status $2
+        exit 0
+fi
