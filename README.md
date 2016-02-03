@@ -3,12 +3,12 @@
 
 ### Usage
 ```shell
-#> svc [start|stop|restart|status] [service]
+$> svc [start|stop|restart|status] [service]
 ```
 
 ### Examples
 ```shell
-#> svc start nginx
+$> sudo svc start nginx
 nginx.service - The nginx HTTP and reverse proxy server
    Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled)
    Active: active (running) since Wed 2016-02-03 15:48:35 UTC; 6ms ago
@@ -24,9 +24,8 @@ nginx.service - The nginx HTTP and reverse proxy server
 Feb 03 15:48:35 nginx-rest nginx[11047]: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 Feb 03 15:48:35 nginx-rest nginx[11047]: nginx: configuration file /etc/nginx/nginx.conf test is successful
 Feb 03 15:48:35 nginx-rest systemd[1]: Started The nginx HTTP and reverse proxy server.
-#>
+$>
 ```
 
 ### License
-
 [MIT](http://choosealicense.com/licenses/mit/)
